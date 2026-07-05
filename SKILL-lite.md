@@ -11,7 +11,7 @@
 直接描述你当前遇到的问题：
 
 | 你说 | 查看章节 |
-|------|----------|
+|------|---------|
 | "旧系统太烂了，要不要重构？" | [Phase 1](#phase-1-危机评估与转移决策) |
 | "准备迁移，需要数据双写方案" | [Phase 2](#phase-2-突围准备与暗线部署) |
 | "迁移出问题了，数据不一致" | [Phase 3](#phase-3-初期迁移与损失控制) |
@@ -34,10 +34,10 @@
 
 ## 适用性自检
 
-以下 4 个问题必须全部回答“是”（第 3 题根据迁移规模动态评估）：
+以下 4 个问题必须全部回答"是"（第 3 题根据迁移规模动态评估）：
 
 1. [ ] 旧系统是否已出现**无法局部修复**的系统性问题？
-2. [ ] 团队是否已达成**“必须迁移”的共识**？
+2. [ ] 团队是否已达成**"必须迁移"的共识**？
 3. [ ] 根据迁移规模，人力资源是否充足？
    - 微型迁移（1 人 1 周，1 个接口）：**1 人即可**
    - 小型迁移（2 人 2-4 周，1 个模块）：**至少 2 人**
@@ -45,9 +45,9 @@
    - 大型迁移（5+ 人 6-12 个月，全量系统）：**至少 5 人**
 4. [ ] 业务方是否**知情并同意**迁移可能带来的阶段性影响？
 
-**如果任一问题回答“否”**：
-- 第 1-2 题或第 4 题回答“否” → **不要使用本 Skill**。先解决共识问题，或采用局部优化方案。
-- 第 3 题回答“否” → **缩小迁移规模**或**暂缓迁移**，先补充人力。
+**如果任一问题回答"否"**：
+- 第 1-2 题或第 4 题回答"否" → **不要使用本 Skill**。先解决共识问题，或采用局部优化方案。
+- 第 3 题回答"否" → **缩小迁移规模**或**暂缓迁移**，先补充人力。
 
 ---
 
@@ -78,20 +78,20 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 6 → Phase 7 
 |-----------|----------|----------|
 | Phase 1 | 旧系统已完全不可用 | Phase 3（紧急重写） |
 | Phase 1 | 团队已在前一项目中使用过本 Skill | Phase 2（复用结论） |
-| Phase 2 | 采用“重写”策略（无旧系统可双写） | Phase 3 |
-| Phase 2 | 模块无外部依赖 | Phase 3（跳过“与依赖方谈判”） |
-| Phase 3 | 采用“重写”策略 | Phase 3（无灰度，直接全量） |
+| Phase 2 | 采用"重写"策略（无旧系统可双写） | Phase 3 |
+| Phase 2 | 模块无外部依赖 | Phase 3（跳过"与依赖方谈判"） |
+| Phase 3 | 采用"重写"策略 | Phase 3（无灰度，直接全量） |
 | Phase 3 | 模块无数据一致性要求 | Phase 4（跳过数据一致性检查） |
 | Phase 4 | 前 3 个 Phase 数据指标全部达标 | Phase 5（无异常，无需复盘） |
 | Phase 5 | 模块无用户可见影响 | Phase 6（跳过 AB 测试） |
-| Phase 5 | 技术方案已在前一项目中验证过 | Phase 6（跳过“方案验证”） |
+| Phase 5 | 技术方案已在前一项目中验证过 | Phase 6（跳过"方案验证"） |
 | Phase 6 | 前 5 个 Phase 无核心瓶颈 | Phase 7（性能指标全部达标） |
 | Phase 6 | 瓶颈可通过扩容解决 | Phase 7（优先扩容，不攻坚） |
 | Phase 7 | 分歧在 2 周内通过数据验证解决 | Phase 8（无需裁决） |
 | Phase 7 | 分歧仅涉及非核心模块 | Phase 8（由模块负责人直接决定） |
-| Phase 8 | 单人项目 | Phase 9（无需“多团队协作验收”） |
-| Phase 9 | 项目为内部工具，无合规要求 | Phase 9（跳过“合规审计”） |
-| Phase 9 | 系统流量极低（< 100 QPS） | Phase 9（跳过“容量规划”和“故障演练”） |
+| Phase 8 | 单人项目 | Phase 9（无需"多团队协作验收"） |
+| Phase 9 | 项目为内部工具，无合规要求 | Phase 9（跳过"合规审计"） |
+| Phase 9 | 系统流量极低（< 100 QPS） | Phase 9（跳过"容量规划"和"故障演练"） |
 
 ### 多轮迁移循环
 
@@ -131,7 +131,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 6 → Phase 7 
 - 旧系统已完全不可用 → 直接跳到 Phase 3（紧急重写）
 - 团队已在前一项目中使用过本 Skill 且问题根因已明确 → 跳过根因分析，复用结论
 ## Rollback 方案
-若评估结论为“无需迁移”，产出《局部优化方案》并归档，项目终止。
+若评估结论为"无需迁移"，产出《局部优化方案》并归档，项目终止。
 ---
 ## 迁移策略决策树
 ```
@@ -228,8 +228,8 @@ function checkFrameworkEOL($framework, $currentVersion) {
 - 数据双写导致旧系统性能下降 > 历史 P95 × 1.5
 - 影子流量差异率 > 历史 P95 错误率 × 2
 ## Skip 条件
-- 采用“重写”策略（Phase 1 决策树）→ 跳过数据双写和影子流量
-- 模块无外部依赖 → 跳过“与依赖方谈判”
+- 采用"重写"策略（Phase 1 决策树）→ 跳过数据双写和影子流量
+- 模块无外部依赖 → 跳过"与依赖方谈判"
 ## Rollback 方案
 - PoC 失败 → 产出《技术栈不可行报告》，终止迁移，启动局部优化
 - 数据双写导致旧系统性能下降 → 立即关闭双写，回滚到只读同步
@@ -331,17 +331,17 @@ function replicateShadowTraffic($originalRequest, $originalResponse) {
 ## 目标
 首批模块迁移，接受可控损失，保留核心骨干。
 ## 通过标准
-- [ ] 首批迁移模块（建议“非核心但高频”，如：用户资料查询）已上线
+- [ ] 首批迁移模块（建议"非核心但高频"，如：用户资料查询）已上线
 - [ ] 旧系统该模块流量已切换 10% 到新系统，无异常
 - [ ] 核心交易数据（订单、支付）100% 强一致，无丢失
 - [ ] 非核心数据允许延迟 < 历史 P95 × 1.5，丢失率 < 历史错误率 P95
-- [ ] 团队已接受“初期损失”心理建设（见下方可控损失清单）
+- [ ] 团队已接受"初期损失"心理建设（见下方可控损失清单）
 ## 失败标准（触发回滚）
 - 核心交易数据丢失 > 0（零容忍）
 - 新系统故障率 > 旧系统历史故障率 P95 × 2
 - 团队核心成员 burnout（通过匿名问卷检测，评分 < 3/5）
 ## Skip 条件
-- 采用“重写”策略 → 此阶段即为“紧急上线核心链路”，无灰度
+- 采用"重写"策略 → 此阶段即为"紧急上线核心链路"，无灰度
 - 模块无数据一致性要求 → 跳过数据一致性检查
 ## Rollback 方案
 - 流量切换回旧系统（接口兼容层秒级切换）
@@ -355,7 +355,7 @@ function replicateShadowTraffic($originalRequest, $originalResponse) {
 | 统计数据丢失 | < 历史错误率 P95 | 事后补录 + 数据平滑 | 邮件/IM |
 | 日志丢失 | < 历史错误率 P95 × 2 | 增加日志采样率 | 邮件/IM |
 | 核心交易数据丢失 | **0%** | 无补偿，零容忍 | 必须确认 |
-**关键**：所有“可接受上限”必须基于历史数据 P95，而非固定数值。
+**关键**：所有"可接受上限"必须基于历史数据 P95，而非固定数值。
 ---
 ## 伪代码示例：数据一致性校验
 ⚠️ **免责声明**：以下代码仅为逻辑示意，未经测试，不可直接用于生产环境。
@@ -427,7 +427,7 @@ function checkDataConsistency($module, $timeWindow = '24h') {
 - 修正后路线未得到业务方确认
 ## Skip 条件
 - 前 3 个 phase 数据指标全部达标（无异常）→ 跳过复盘，直接进入 Phase 5
-- 团队已在前一项目中使用过本 Skill 且决策机制已明确 → 跳过“确立决策机制”
+- 团队已在前一项目中使用过本 Skill 且决策机制已明确 → 跳过"确立决策机制"
 ## Rollback 方案
 - 会议无法达成共识 → 由最高技术负责人拍板，记录反对意见，2 周后再次复盘
 ---
@@ -485,7 +485,7 @@ function checkDataConsistency($module, $timeWindow = '24h') {
 - 方案切换机制无法在 5 分钟内完成
 ## Skip 条件
 - 模块无用户可见影响（后台数据处理）→ 跳过 AB 测试，仅做灰度
-- 技术方案已在前一项目中验证过 → 跳过“方案验证”，直接灰度
+- 技术方案已在前一项目中验证过 → 跳过"方案验证"，直接灰度
 ## Rollback 方案
 - 流量切换回旧系统（版本路由秒级切换）
 - 失败方案记录到《失败方案库》，避免团队重复踩坑
@@ -584,7 +584,7 @@ function getFeatureFlag($name) {
 - [ ] 核心问题已明确（如：支付回调处理延迟 > 历史 P95 × 2）
 - [ ] 攻坚小组已组建（1 架构师 + 1 核心开发 + 1 测试，可选）
 - [ ] Deadline 已设定（技术评估时间 × 1.5 倍缓冲，最长不超过 2 周）
-- [ ] 攻坚期间，小组成员不参与其他项目，日常维护由“牵制部队”承担
+- [ ] 攻坚期间，小组成员不参与其他项目，日常维护由"牵制部队"承担
 - [ ] 问题已解决，且验证通过（性能提升 > 历史基线 50%，或 Bug 修复率 100%）
 ## 失败标准（触发回滚）
 - Deadline 到期未解决，且未提前 3 天预警
@@ -606,34 +606,45 @@ function getFeatureFlag($name) {
 | 替补成员 | 1 | 队长不可用时接手 | 提前指定，熟悉上下文 |
 **资源隔离**：
 - 攻坚期间不参与其他项目
-- 日常维护由“牵制部队”（1-2 人）承担
+- 日常维护由"牵制部队"（1-2 人）承担
 - 牵制部队负责人提前指定
 ---
 ## 伪代码示例：性能瓶颈排查
 ⚠️ **免责声明**：以下代码仅为逻辑示意，未经测试，不可直接用于生产环境。
 ```php
+// 伪代码：性能瓶颈排查（Swoole + Hyperf 环境）
+// 关键注意事项：
+// 1. ⚠️ 必须采集多维指标：不能只采集响应时间，必须同时采集 CPU、内存、IO、网络
+// 2. ⚠️ 必须区分系统瓶颈和代码瓶颈：系统瓶颈（如：MySQL 连接池耗尽）需要扩容，代码瓶颈（如：N+1 查询）需要优化
+// 3. ⚠️ 必须在生产环境采样：开发环境数据通常无法反映真实压力
+// 4. ⚠️ 必须记录基线：优化前后的对比必须基于同一时段、同一负载
 function diagnoseBottleneck($module, $duration = '1h') {
     $metrics = collectMetrics($module, $duration);
+    // 1. 检查 Swoole 协程和内存
     $coroutineMetrics = [
         'coroutine_num' => swoole_coroutine_stats()['coroutine_num'],
         'coroutine_peak_num' => swoole_coroutine_stats()['coroutine_peak_num'],
         'memory_usage' => memory_get_usage(true),
         'memory_peak' => memory_get_peak_usage(true),
     ];
+    // 2. 检查 MySQL 连接池
     $dbMetrics = [
         'pool_used' => getDbPoolUsedConnections(),
         'pool_total' => getDbPoolTotalConnections(),
         'slow_queries' => countSlowQueries($duration),
     ];
+    // 3. 检查 Redis 连接池
     $redisMetrics = [
         'pool_used' => getRedisPoolUsedConnections(),
         'pool_total' => getRedisPoolTotalConnections(),
         'memory_usage' => getRedisMemoryUsage(),
     ];
+    // 4. 检查 Kafka 消费延迟
     $kafkaMetrics = [
         'consumer_lag' => getKafkaConsumerLag($module),
         'consume_rate' => getKafkaConsumeRate($module),
     ];
+    // 5. 分析瓶颈类型
     $bottleneck = analyzeBottleneck([
         'coroutine' => $coroutineMetrics,
         'db' => $dbMetrics,
@@ -643,12 +654,14 @@ function diagnoseBottleneck($module, $duration = '1h') {
     return $bottleneck;
 }
 function analyzeBottleneck($metrics) {
+    // 系统瓶颈判断（需要扩容）
     if ($metrics['db']['pool_used'] / $metrics['db']['pool_total'] > 0.9) {
         return ['type' => 'system', 'component' => 'db_pool', 'action' => 'scale_up'];
     }
     if ($metrics['redis']['pool_used'] / $metrics['redis']['pool_total'] > 0.9) {
         return ['type' => 'system', 'component' => 'redis_pool', 'action' => 'scale_up'];
     }
+    // 代码瓶颈判断（需要优化）
     if ($metrics['db']['slow_queries'] > getThreshold('slow_query_count')) {
         return ['type' => 'code', 'component' => 'sql', 'action' => 'optimize_queries'];
     }
@@ -745,15 +758,15 @@ function analyzeBottleneck($metrics) {
 定义验收标准，完成交付，给团队休整窗口。
 ## 通过标准
 - [ ] 验收标准已定义（见下方验收标准清单）
-- [ ] 所有模块已通过验收（或明确标记为“遗留问题”并分配负责人）
+- [ ] 所有模块已通过验收（或明确标记为"遗留问题"并分配负责人）
 - [ ] 多团队已签署《交付确认书》（各团队负责人确认）
 - [ ] 团队休整窗口已安排（建议基于历史项目节奏：通常为 3-5 天或 1 个 Sprint 的 20%）
 ## 失败标准（触发回滚）
 - 核心模块未通过验收，但被迫交付
 - 无休整窗口，团队立即投入下一项目
-- 遗留问题未分配负责人，成为“技术债务黑洞”
+- 遗留问题未分配负责人，成为"技术债务黑洞"
 ## Skip 条件
-- 单人项目 → 无需“多团队协作验收”，但必须有“自我验收清单”
+- 单人项目 → 无需"多团队协作验收"，但必须有"自我验收清单"
 ## Rollback 方案
 - 核心模块未通过验收 → 延期交付，修复后再验收
 - 遗留问题未分配负责人 → 强制分配，否则项目不关闭
@@ -816,7 +829,7 @@ function analyzeBottleneck($metrics) {
 
 # Phase 9: 运维治理与资产沉淀
 ## 目标
-从“项目模式”转向“产品模式”，建立监控、告警、文档、合规审计体系。
+从"项目模式"转向"产品模式"，建立监控、告警、文档、合规审计体系。
 ## 通过标准
 - [ ] 监控体系已建立（见下方监控清单）
 - [ ] 告警规则已配置（无噪音，准确率 > 历史告警准确率 P95）
@@ -830,8 +843,8 @@ function analyzeBottleneck($metrics) {
 - 告警噪音率 > 50%（团队麻木，忽略告警）
 - 合规审计未通过（核心操作缺失审计日志）
 ## Skip 条件
-- 项目为内部工具，无合规要求 → 跳过“合规审计”
-- 系统流量极低（< 100 QPS）→ 跳过“容量规划”和“故障演练”
+- 项目为内部工具，无合规要求 → 跳过"合规审计"
+- 系统流量极低（< 100 QPS）→ 跳过"容量规划"和"故障演练"
 ## Rollback 方案
 - 监控缺失 → 立即补全监控，故障发现延迟期间启用人工巡检
 - 告警噪音 → 暂停非关键告警，优化规则后重新启用
@@ -855,9 +868,9 @@ function analyzeBottleneck($metrics) {
 ---
 ## 告警降噪与升级路径
 ### 降噪规则
-1. **合并告警**：同一问题 5 分钟内只告警 1 次，后续发送“聚合通知”
+1. **合并告警**：同一问题 5 分钟内只告警 1 次，后续发送"聚合通知"
 2. **静默期**：非工作时间（22:00-08:00）仅 P0 告警通知，P1/P2 延迟到工作时间
-3. **自动恢复**：指标恢复后自动发送“恢复通知”，避免人工确认
+3. **自动恢复**：指标恢复后自动发送"恢复通知"，避免人工确认
 4. **阈值动态调整**：每周 review 告警准确率，准确率 < 80% 的告警规则必须调整阈值
 ### 升级路径
 | 级别 | 响应时间 | 升级条件 | 升级对象 |
@@ -875,32 +888,50 @@ function analyzeBottleneck($metrics) {
 ### 支付数据审计日志（参考实现）
 ⚠️ **免责声明**：以下代码仅为逻辑示意，未经测试，不可直接用于生产环境。
 ```php
+// 伪代码：支付操作审计日志
+// 关键注意事项：
+// 1. ⚠️ 必须记录完整上下文：操作类型、用户、金额、渠道、前后状态、操作人、请求 ID
+// 2. ⚠️ 必须防篡改：审计日志应写入 WORM 存储或独立数据库，应用层不可修改
+// 3. ⚠️ 必须异步写入：不能阻塞支付主流程，失败时进入本地队列重试
+// 4. ⚠️ 必须定期检查：每小时检查核心操作是否有对应审计日志，缺失率 > 0 立即告警
+// 5. ⚠️ 必须保留期限：根据合规要求设定保留期限（如：PCI DSS 要求 1 年）
+// 6. ⚠️ 查询性能：审计表必须按时间分区，避免全表扫描导致锁表
 function logPaymentAudit($action, $context) {
     $log = [
         'timestamp' => microtime(true),
-        'action' => $action,
+        'action' => $action, // create_order, update_status, refund, etc.
         'user_id' => $context['user_id'] ?? null,
         'order_no' => $context['order_no'] ?? null,
         'amount' => $context['amount'] ?? null,
-        'channel' => $context['channel'] ?? null,
+        'channel' => $context['channel'] ?? null, // wechat, alipay, apple, etc.
         'ip' => $context['ip'] ?? null,
         'request_id' => $context['request_id'] ?? null,
         'before_status' => $context['before_status'] ?? null,
         'after_status' => $context['after_status'] ?? null,
         'operator' => $context['operator'] ?? 'system',
     ];
+    // 异步写入审计日志（不阻塞主流程）
     async(function() use ($log) {
         try {
+            // 写入独立审计数据库（不可由应用层修改）
             writeToAuditDB($log);
+            // 同时发送 Kafka，用于实时审计监控
             sendToKafka('audit-log-topic', $log);
         } catch (Exception $e) {
+            // 失败时写入本地队列，稍后重试
             writeToLocalAuditQueue($log);
             logError('Audit log failed', ['error' => $e, 'log' => $log]);
         }
     });
 }
+// 伪代码：审计日志完整性检查
+// 关键注意事项：
+// 1. ⚠️ 必须按时间分区查询：避免全表扫描，只查最近 1 小时分区
+// 2. ⚠️ 必须在从库或只读实例执行：避免影响主库性能
+// 3. ⚠️ 缺失率 > 0 必须立即告警，但告警阈值不是"0 条缺失"，而是"缺失率 > 0.001%"（允许网络抖动等偶发情况）
 function checkAuditLogIntegrity($timeWindow = '1h') {
     $startTime = now()->sub($timeWindow);
+    // 在只读实例上执行
     $businessCount = readOnlyDB()->table('orders')
         ->where('created_at', '>', $startTime)
         ->count();
@@ -908,7 +939,8 @@ function checkAuditLogIntegrity($timeWindow = '1h') {
         ->where('timestamp', '>', $startTime->getTimestamp())
         ->count();
     $missingRate = ($businessCount - $auditCount) / $businessCount;
-    $threshold = 0.00001;
+    // 阈值：允许 0.001% 的偶发缺失（网络抖动、磁盘满等）
+    $threshold = 0.00001; // 0.001%
     if ($missingRate > $threshold) {
         alert("Audit log missing rate: {$missingRate}");
     }
@@ -936,12 +968,12 @@ function checkAuditLogIntegrity($timeWindow = '1h') {
 **修复**：单体优先，按需拆分。
 
 ### 2. Big-Bang Deployment（大爆炸部署）
-**定义**：不做灰度，直接全量上线，赌“不会出问题”。
+**定义**：不做灰度，直接全量上线，赌"不会出问题"。
 **检测**：是否有灰度配置？是否有回滚脚本？
 **修复**：强制灰度 10%→30%→50%→100%，回滚演练。
 
 ### 3. Rewrite-First Syndrome（重写优先综合征）
-**定义**：遇到问题不分析根因，直接喊“重写”。
+**定义**：遇到问题不分析根因，直接喊"重写"。
 **检测**：是否有 RCA 报告？重写决策是否基于数据？
 **修复**：强制 RCA，渐进式重写，知识迁移。
 
